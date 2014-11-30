@@ -19,10 +19,32 @@
 
   </head>
   <body>
-
-    <div ui-view></div>
-
-
+  <fa-app ng-controller="index">
+    <fa-view id="app-container">
+      <fa-surface fa-background-color="'#ccc'">
+        <div style="font-size: 2em; padding: 10px;">Main Menu</div>
+      </fa-surface>
+      <fa-modifier fa-translate="[contentViewPos.get(), 0, 0]">
+        <fa-header-footer-layout fa-options="{headerSize: 75, footerSize: 0}">
+          <fa-modifier fa-translate="[0, 0, 0]">
+            <fa-surface fa-size="[undefined, 40]" fa-background-color="'#000'">
+            </fa-surface>
+            <fa-modifier fa-translate="[5, 5, 0]">
+              <fa-surface fa-click="toggleMenu()" fa-size="[30, 30]" fa-background-color="'#666'"></fa-surface>
+            </fa-modifier>
+          </fa-modifier>
+          <fa-modifier fa-translate="[0, 40, 0]">
+            <fa-surface fa-pipe-to="sync" fa-size="[undefined, undefined]" fa-background-color="'#f6f6f6'">
+              <div style="font-size: 2em; padding: 10px;">
+                <div ui-view></div>
+              </div>
+            </fa-surface>
+          </fa-modifier>
+          <fa-surface></fa-surface>
+        </fa-header-footer-layout>
+      </fa-modifier>
+    </fa-view>
+  </fa-app>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
@@ -37,10 +59,11 @@
       require.config({baseUrl: 'bower_components'});
     </script>
     <script src="bower_components/underscore/underscore.js"></script>
-    <script src="//code.famo.us/famous-angular/latest/famous-angular.js"></script>
+  <script src="bower_components/famous-angular/dist/famous-angular.min.js"></script>
 
     <!-- build:js({app,.tmp}) scripts/main.js -->
     <script src="scripts/famousAngularStarter.js"></script>
+  <script src="index.js"></script>
     <script src="scripts/main/main-ctrl.js"></script>
     <script src="scripts/main/scroll-view-ctrl.js"></script>
     <script src="scripts/services/list-services.js"></script>
